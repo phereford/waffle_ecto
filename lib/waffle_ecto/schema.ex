@@ -86,6 +86,8 @@ defmodule Waffle.Ecto.Schema do
     end
   end
 
+  def do_apply_changes({_, {_, %Ecto.Changeset{} = changeset}}), do: Ecto.Changeset.apply_changes(changeset)
+  def do_apply_changes({_, {_, %{__meta__: _} = data}}), do: data
   def do_apply_changes(%Ecto.Changeset{} = changeset), do: Ecto.Changeset.apply_changes(changeset)
   def do_apply_changes(%{__meta__: _} = data), do: data
 
