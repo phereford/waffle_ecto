@@ -90,7 +90,7 @@ defmodule Waffle.Ecto.Schema do
   def do_apply_changes(%{__meta__: _} = data), do: data
 
   def check_and_apply_scope(params, scope, options) do
-    require IEX
+    require IEx
     IEx.pry
   end
 
