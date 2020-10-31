@@ -90,10 +90,12 @@ defmodule Waffle.Ecto.Schema do
   def do_apply_changes(%{__meta__: _} = data), do: data
 
   def check_and_apply_scope(params, scope, options) do
-    a= Enum.reduce(params, [], fn ->
+    a= Enum.reduce(params, [], fn
       # If casting a binary (path), ensure we've explicitly allowed paths
       {field, path}, fields when is_binary(path) ->
         path = String.trim(path)
+        require IEx
+        IEx.pry
 
         cond do
           Keyword.get(options, :allow_urls, false) and Regex.match?(~r/^https?:\/\//, path) ->
@@ -102,8 +104,6 @@ defmodule Waffle.Ecto.Schema do
             fields
         end
     end)
-    require IEx
-    IEx.pry
   end
 
   def convert_params_to_binary(params) do
