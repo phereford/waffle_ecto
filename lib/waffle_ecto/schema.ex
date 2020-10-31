@@ -107,7 +107,7 @@ defmodule Waffle.Ecto.Schema do
       # If casting a binary (path), ensure we've explicitly allowed paths
       {field, path}, fields when is_binary(path) ->
         path = String.trim(path)
-      {field, {path, scope}} ->
+      {field, {path, scope}}, fields ->
         require IEx
         IEx.pry
 
