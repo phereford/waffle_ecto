@@ -89,12 +89,12 @@ defmodule Waffle.Ecto.Schema do
   def do_apply_changes(%Ecto.Changeset{} = changeset), do: Ecto.Changeset.apply_changes(changeset)
   def do_apply_changes(%{__meta__: _} = data), do: data
 
-  def check_and_apply_scope({param, {value, scope}}, options) do
-    check_and_apply_scope(%{param => value}, scope, options)
-  end
   def check_and_apply_scope(params, scope, options) do
-    require IEx
+    require IEX
     IEx.pry
+  end
+
+  def test(params, scope, options) do
     Enum.reduce(params, [], fn
       # Don't wrap nil casts in the scope object
       {field, nil}, fields ->
