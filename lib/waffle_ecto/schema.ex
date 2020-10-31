@@ -90,29 +90,34 @@ defmodule Waffle.Ecto.Schema do
   def do_apply_changes(%{__meta__: _} = data), do: data
 
   def check_and_apply_scope(params, scope, options) do
+    Enum.reduce(params, [], fn
     require IEx
     IEx.pry
-  end
-
-  def test(params, scope, options) do
-    Enum.reduce(params, [], fn
       # Don't wrap nil casts in the scope object
       {field, nil}, fields ->
         [{field, nil} | fields]
 
+    require IEx
+    IEx.pry
       # Allow casting Plug.Uploads
       {field, upload = %{__struct__: Plug.Upload}}, fields ->
         [{field, {upload, scope}} | fields]
 
+    require IEx
+    IEx.pry
       # Allow casting binary data structs
       {field, upload = %{filename: filename, binary: binary}}, fields
       when is_binary(filename) and is_binary(binary) ->
         [{field, {upload, scope}} | fields]
 
+    require IEx
+    IEx.pry
       # If casting a binary (path), ensure we've explicitly allowed paths
       {field, path}, fields when is_binary(path) ->
         path = String.trim(path)
 
+    require IEx
+    IEx.pry
         cond do
           path == "" ->
             fields
