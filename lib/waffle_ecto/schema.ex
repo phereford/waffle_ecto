@@ -93,6 +93,7 @@ defmodule Waffle.Ecto.Schema do
     check_and_apply_scope(%{param => value}, scope, options)
   end
   def check_and_apply_scope(params, scope, options) do
+    IO.puts("HOOORAY")
     Enum.reduce(params, [], fn
       # Don't wrap nil casts in the scope object
       {field, nil}, fields ->
