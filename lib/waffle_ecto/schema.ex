@@ -108,22 +108,21 @@ defmodule Waffle.Ecto.Schema do
       {field, path}, fields when is_binary(path) ->
         path = String.trim(path)
       {field, {path, scope}}, fields ->
-        require IEx
-        IEx.pry
+        nil
 
-        cond do
-          path == "" ->
-            fields
+      cond do
+        path == "" ->
+          fields
 
-          Keyword.get(options, :allow_urls, false) and Regex.match?(~r/^https?:\/\//, path) ->
-            [{field, {path, scope}} | fields]
+        Keyword.get(options, :allow_urls, false) and Regex.match?(~r/^https?:\/\//, path) ->
+          [{field, {path, scope}} | fields]
 
-          Keyword.get(options, :allow_paths, false) ->
-            [{field, {path, scope}} | fields]
+        Keyword.get(options, :allow_paths, false) ->
+          [{field, {path, scope}} | fields]
 
-          true ->
-            fields
-        end
+        true ->
+          fields
+      end
     end)
   end
 
